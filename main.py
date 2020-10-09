@@ -44,7 +44,7 @@ def placePiece(board, col, colour):
         else:
             break
     board[row][col] = colour
-    evaluateState(board)
+    return evaluateState(board)
 
 
 # evaluates board for a winning state
