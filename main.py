@@ -47,12 +47,6 @@ def resetGame():
 
 
 
-game.placePiece(0, "R")
-game.placePiece(1, "R")
-game.placePiece(2, "R")
-game.placePiece(3, "R")
-
-game.placePiece(player.randomMove(game.board), "B")
 displayBoard(screen, game.board)
 
 pygame.display.update()
@@ -61,8 +55,8 @@ pygame.display.update()
 pygame.display.update()
 
 # reset
-resetX = 400
-resetY = 400
+resetX = 100
+resetY = 310
 resetWidth = 100
 resetHeight = 50
 
@@ -72,7 +66,12 @@ currentTurnX = 150
 currentTurnY = 280
 
 pygame.display.update()
+
+# https://stackoverflow.com/questions/18839039/how-to-wait-some-time-in-pygame
+delay = 0
+
 while 1:
+  tick = pygame.time.get_ticks()
   screen.fill(grey)
   displayBoard(screen, game.board)
   mouse = pygame.mouse.get_pos() 
@@ -84,7 +83,35 @@ while 1:
         # reset button
           if resetX <= mouse[0] <= resetX+resetWidth and resetY <= mouse[1] <= resetY+resetHeight:
             resetGame()
+        # player move
+          if currentTurn == "Player":
+            # col 0
+            if 15 <= mouse[0] <= 15+30 and 15 <= mouse[1] <= 250:
+              game.placePiece(0, "R")
+            # col 1
+            if 55 <= mouse[0] <= 55+30 and 15 <= mouse[1] <= 250:
+              game.placePiece(1, "R")
+            # col 2
+            if 95 <= mouse[0] <= 95+30 and 15 <= mouse[1] <= 250:
+              game.placePiece(2, "R")
+            # col 3
+            if 135 <= mouse[0] <= 135+30 and 15 <= mouse[1] <= 250:
+              game.placePiece(3, "R")
+            # col 4
+            if 175 <= mouse[0] <= 175+30 and 15 <= mouse[1] <= 250:
+              game.placePiece(4, "R")
+            # col 5
+            if 205 <= mouse[0] <= 205+30 and 15 <= mouse[1] <= 250:
+              game.placePiece(5, "R")
+            # col 6
+            if 245 <= mouse[0] <= 245+30 and 15 <= mouse[1] <= 250:
+              game.placePiece(6, "R")
+            currentTurn = "Computer"
+            delay = tick + 1000
 
+  if currentTurn == "Computer" and delay < tick:
+    game.placePiece(player.randomMove(game.board), "B")
+    currentTurn = "Player"
   ## drawing
 
   # reset
