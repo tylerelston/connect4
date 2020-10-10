@@ -65,6 +65,11 @@ currentTurn = "Player"
 currentTurnX = 150
 currentTurnY = 280
 
+# win
+win = "Winner: "
+winX = 150
+winY = 450
+
 pygame.display.update()
 
 # https://stackoverflow.com/questions/18839039/how-to-wait-some-time-in-pygame
@@ -75,6 +80,11 @@ while 1:
   screen.fill(grey)
   displayBoard(screen, game.board)
   mouse = pygame.mouse.get_pos() 
+
+  # check for win
+  state = game.evaluateState()
+  if (state != 0):
+    text(win + state, screen, winX, winY)
 
   for event in pygame.event.get():
       if event.type == pygame.QUIT:

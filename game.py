@@ -20,8 +20,7 @@ class Game:
               prevColour = colour
 
               if consecutive == 4:
-                  print("Win:", colour)
-                  return True
+                  return colour
 
       # check for column win
       for row in range(len(self.board)):
@@ -34,16 +33,14 @@ class Game:
           prevColour = colour
 
           if consecutive == 4:
-              print("Win:", colour)
-              return True
+              return colour
 
       # check for diagonal win
 
-      return False
+      return 0
 
   # place piece
   def placePiece(self, col, colour):
-      print('PLACING')
       row = 0
       while row < 5 and self.board[row][col] == 0:
           if self.board[row][col] == 0 and self.board[row + 1][col] == 0:
