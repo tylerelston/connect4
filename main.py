@@ -1,6 +1,8 @@
 import pygame, game
 
 pygame.init()
+game = game.Game()
+
 font = pygame.font.SysFont('Comic Sans MS', 40)
 size = width, height = 800, 575
 speed = [2, 2]
@@ -10,7 +12,6 @@ red = 255, 0, 0
 blue = 0, 0, 255
 white = 255, 255, 255
 
-board = [[0 for num in range(7)] for row in range(6)]
 
 screen = pygame.display.set_mode(size)
 
@@ -41,17 +42,16 @@ def displayBoard(screen, board):
 
 def resetGame():
   screen.fill(grey)
-  board = [[0 for num in range(7)] for row in range(6)]
-  displayBoard(screen, board)
-  return board
+  game.board = [[0 for num in range(7)] for row in range(6)]
+  displayBoard(screen, game.board)
 
 
 
-game.placePiece(board, 0, "R")
-game.placePiece(board, 1, "R")
-game.placePiece(board, 2, "R")
-game.placePiece(board, 3, "R")
-displayBoard(screen, board)
+game.placePiece(0, "R")
+game.placePiece(1, "R")
+game.placePiece(2, "R")
+game.placePiece(3, "R")
+displayBoard(screen, game.board)
 
 pygame.display.update()
 
@@ -66,7 +66,7 @@ resetHeight = 50
 pygame.display.update()
 while 1:
   screen.fill(grey)
-  displayBoard(screen, board)
+  displayBoard(screen, game.board)
   mouse = pygame.mouse.get_pos() 
 
   for event in pygame.event.get():
@@ -75,7 +75,7 @@ while 1:
       if event.type == pygame.MOUSEBUTTONDOWN:
         # reset button
           if resetX <= mouse[0] <= resetX+resetWidth and resetY <= mouse[1] <= resetY+resetHeight:
-            board = resetGame()
+            resetGame()
 
   ## drawing
 
