@@ -1,4 +1,4 @@
-import pygame, game
+import pygame, game, player
 
 pygame.init()
 game = game.Game()
@@ -51,6 +51,8 @@ game.placePiece(0, "R")
 game.placePiece(1, "R")
 game.placePiece(2, "R")
 game.placePiece(3, "R")
+
+game.placePiece(player.randomMove(game.board), "B")
 displayBoard(screen, game.board)
 
 pygame.display.update()
