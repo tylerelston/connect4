@@ -1,7 +1,7 @@
 import pygame
 
 pygame.init()
-
+font = pygame.font.SysFont('Comic Sans MS', 40)
 size = width, height = 800, 575
 speed = [2, 2]
 black = 0, 0, 0
@@ -14,6 +14,12 @@ board = [[0 for num in range(7)] for row in range(6)]
 
 screen = pygame.display.set_mode(size)
 
+# https://www.geeksforgeeks.org/python-display-text-to-pygame-window/
+def text(text, screen, x, y):
+  text = font.render(text, True, black)
+  textRect = text.get_rect()
+  textRect.center = (x,y)
+  screen.blit(text, textRect)
 
 # display game board
 def displayBoard(screen, board):
@@ -33,6 +39,11 @@ def displayBoard(screen, board):
         x = 15
         y += 40
 
+def resetGame():
+  screen.fill(grey)
+  board = [[0 for num in range(7)] for row in range(6)]
+  displayBoard(screen, board)
+  return board
 
 # place piece
 def placePiece(board, col, colour):
@@ -44,6 +55,7 @@ def placePiece(board, col, colour):
         else:
             break
     board[row][col] = colour
+    displayBoard(screen, board)
     return evaluateState(board)
 
 
@@ -81,18 +93,41 @@ def evaluateState(board):
 
     # check for diagonal win
 
+
+    return False
+
 placePiece(board, 0, "R")
 placePiece(board, 1, "R")
 placePiece(board, 2, "R")
 placePiece(board, 3, "R")
 pygame.display.update()
 
-displayBoard(screen, board)
+#board = resetGame()
+pygame.display.update()
+
+resetX = 400
+resetY = 25
+resetWidth = 100
+resetHeight = 50
+
+pygame.display.update()
 while 1:
+  screen.fill(grey)
+  displayBoard(screen, board)
+  mouse = pygame.mouse.get_pos() 
 
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-          pass
+  for event in pygame.event.get():
+      if event.type == pygame.QUIT:
+        pass
+      if event.type == pygame.MOUSEBUTTONDOWN:
+        # reset button
+          if resetX <= mouse[0] <= resetX+resetWidth and resetY <= mouse[1] <= resetY+resetHeight:
+            board = resetGame()
 
-    #screen.fill(black)
-    pygame.display.flip()
+  ## drawing
+
+  # reset
+  resetButton = pygame.draw.rect(screen, white, (resetX, resetY, resetWidth, resetHeight))
+  text('Reset', screen, resetX+resetWidth/2, resetY+resetHeight/2)
+
+  pygame.display.flip()
