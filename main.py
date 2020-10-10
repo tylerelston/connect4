@@ -1,4 +1,4 @@
-import pygame
+import pygame, game
 
 pygame.init()
 font = pygame.font.SysFont('Comic Sans MS', 40)
@@ -45,61 +45,14 @@ def resetGame():
   displayBoard(screen, board)
   return board
 
-# place piece
-def placePiece(board, col, colour):
-    print('PLACING')
-    row = 0
-    while row < 5 and board[row][col] == 0:
-        if board[row][col] == 0 and board[row + 1][col] == 0:
-            row += 1
-        else:
-            break
-    board[row][col] = colour
-    displayBoard(screen, board)
-    return evaluateState(board)
 
 
-# evaluates board for a winning state
-def evaluateState(board):
-    consecutive = 1
-    # check for row win
-    for col in range(len(board[0])):
-        prevColour = 0
-        for row in range(len(board)):
-            colour = board[row][col]
-            if colour != 0 and prevColour == colour:
-                consecutive += 1
-            else:
-                consecutive = 1
-            prevColour = colour
+game.placePiece(board, 0, "R")
+game.placePiece(board, 1, "R")
+game.placePiece(board, 2, "R")
+game.placePiece(board, 3, "R")
+displayBoard(screen, board)
 
-            if consecutive == 4:
-                print("Win:", colour)
-                return True
-
-    # check for column win
-    for row in range(len(board)):
-      for col in range(len(board[row])):
-        colour = board[row][col]
-        if colour != 0 and prevColour == colour:
-            consecutive += 1
-        else:
-            consecutive = 1
-        prevColour = colour
-
-        if consecutive == 4:
-            print("Win:", colour)
-            return True
-
-    # check for diagonal win
-
-
-    return False
-
-placePiece(board, 0, "R")
-placePiece(board, 1, "R")
-placePiece(board, 2, "R")
-placePiece(board, 3, "R")
 pygame.display.update()
 
 #board = resetGame()
