@@ -60,10 +60,16 @@ pygame.display.update()
 #board = resetGame()
 pygame.display.update()
 
+# reset
 resetX = 400
-resetY = 25
+resetY = 400
 resetWidth = 100
 resetHeight = 50
+
+# currentTurn
+currentTurn = "Player"
+currentTurnX = 150
+currentTurnY = 280
 
 pygame.display.update()
 while 1:
@@ -84,5 +90,8 @@ while 1:
   # reset
   resetButton = pygame.draw.rect(screen, white, (resetX, resetY, resetWidth, resetHeight))
   text('Reset', screen, resetX+resetWidth/2, resetY+resetHeight/2)
+
+  # currentMove
+  text('Current Move: ' + currentTurn, screen, currentTurnX,currentTurnY)
 
   pygame.display.flip()
