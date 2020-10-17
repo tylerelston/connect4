@@ -45,7 +45,56 @@ def resetGame():
   game.board = [[0 for num in range(7)] for row in range(6)]
   displayBoard(screen, game.board)
   return random.choice(turns)
+# counts the number of adjacent same coloured pieces for a given move
+# assumes the move given is the same as colour as the colour parameter
+def blanksNearMove(board, colour, row, col):
+  oldCol = col
+  oldRow = row
+  adjacentCount = 0
 
+  # count to the left
+  while col > 0:
+    print(board[row][col-1])
+    if board[row][col-1] == colour:
+      adjacentCount += 1
+      col -= 1
+    else:
+      break
+
+  col = oldCol
+  row = oldRow
+  # count to the right
+  while col < 6:
+    print(board[row][col+1])
+    if board[row][col+1] == colour:
+      adjacentCount += 1
+      col += 1
+    else:
+      break
+
+  col = oldCol
+  row = oldRow
+  # count up
+  while row < 0:
+    print(board[row-1][col])
+    if board[row-1][col] == colour:
+      adjacentCount -= 1
+      row -= 1
+    else:
+      break
+
+  col = oldCol
+  row = oldRow
+  # count down
+  while col < 6:
+    print(board[row+1][col])
+    if board[row+1][col] == colour:
+      adjacentCount += 1
+      row += 1
+    else:
+      break
+  print('adj:',adjacentCount)
+  return adjacentCount
 
 displayBoard(screen, game.board)
 
@@ -108,7 +157,7 @@ while 1:
                 currentTurn = "Computer"
               # col 1
               if 55 <= mouse[0] <= 55+30 and 15 <= mouse[1] <= 250:
-                game.placePiece(1, "R")
+                blanksNearMove(game.board, "R", game.placePiece(1, "R"), 1)
                 currentTurn = "Computer"
               # col 2
               if 95 <= mouse[0] <= 95+30 and 15 <= mouse[1] <= 250:
@@ -128,7 +177,7 @@ while 1:
                 currentTurn = "Computer"
               # col 6
               if 245 <= mouse[0] <= 245+30 and 15 <= mouse[1] <= 250:
-                print('left',blanksNearMove(game.board, "R", game.placePiece(6, "R"),6))
+                blanksNearMove(game.board, "R", game.placePiece(6, "R")
                 currentTurn = "Computer"
             delay = tick + 1000
 
