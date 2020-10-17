@@ -23,6 +23,8 @@ def randomMove(board):
       if board[row][col-1] == colour:
         adjacentCount += 1
         col -= 1
+      else:
+        break
 
     return adjacentCount
 

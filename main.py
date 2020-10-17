@@ -46,23 +46,6 @@ def resetGame():
   displayBoard(screen, game.board)
   return random.choice(turns)
 
-# counts the number of adjacent same coloured pieces for a given move
-def blanksNearMove(board, colour, move):
-  row = move[0]
-  col = move[1]
-  adjacentCount = 0
-  current = board[row][col]
-  # count to the left
-  try:
-    current = board[row][col-1]
-    while current == colour:
-      if board[row][col-1] == colour:
-        adjacentCount += 1
-        current = board[row][col-1]
-  except:
-    pass
-    
-  return adjacentCount
 
 displayBoard(screen, game.board)
 
