@@ -39,7 +39,7 @@ class Game:
 
       return 0
 
-  # place piece
+  # place piece, returns row placed at
   def placePiece(self, col, colour):
       row = 0
       while row < 5 and self.board[row][col] == 0:
@@ -48,3 +48,4 @@ class Game:
           else:
               break
       self.board[row][col] = colour
+      return row
