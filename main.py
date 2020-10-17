@@ -177,7 +177,7 @@ while 1:
                 currentTurn = "Computer"
               # col 6
               if 245 <= mouse[0] <= 245+30 and 15 <= mouse[1] <= 250:
-                blanksNearMove(game.board, "R", game.placePiece(6, "R")
+                game.board, "R", game.placePiece(6, "R")
                 currentTurn = "Computer"
             delay = tick + 1000
 
