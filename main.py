@@ -1,4 +1,4 @@
-import pygame, game, player
+import pygame, game, player, random
 
 pygame.init()
 game = game.Game()
@@ -44,6 +44,7 @@ def resetGame():
   screen.fill(grey)
   game.board = [[0 for num in range(7)] for row in range(6)]
   displayBoard(screen, game.board)
+  return random.choice(turns)
 
 
 
@@ -61,7 +62,8 @@ resetWidth = 100
 resetHeight = 50
 
 # currentTurn
-currentTurn = "Player"
+turns = ["Player", "Computer"]
+currentTurn = random.choice(turns)
 currentTurnX = 150
 currentTurnY = 280
 
@@ -86,42 +88,49 @@ while 1:
   if (state != 0):
     text(win + state, screen, winX, winY)
 
+  if currentTurn == "Computer" and delay < tick:
+    game.placePiece(player.randomMove(game.board), "B")
+    currentTurn = "Player"
+
   for event in pygame.event.get():
       if event.type == pygame.QUIT:
         pass
       if event.type == pygame.MOUSEBUTTONDOWN:
         # reset button
           if resetX <= mouse[0] <= resetX+resetWidth and resetY <= mouse[1] <= resetY+resetHeight:
-            resetGame()
+            currentTurn = resetGame()
         # player move
           if currentTurn == "Player":
             # col 0
             if 15 <= mouse[0] <= 15+30 and 15 <= mouse[1] <= 250:
               game.placePiece(0, "R")
+              currentTurn = "Computer"
             # col 1
             if 55 <= mouse[0] <= 55+30 and 15 <= mouse[1] <= 250:
               game.placePiece(1, "R")
+              currentTurn = "Computer"
             # col 2
             if 95 <= mouse[0] <= 95+30 and 15 <= mouse[1] <= 250:
               game.placePiece(2, "R")
+              currentTurn = "Computer"
             # col 3
             if 135 <= mouse[0] <= 135+30 and 15 <= mouse[1] <= 250:
               game.placePiece(3, "R")
+              currentTurn = "Computer"
             # col 4
             if 175 <= mouse[0] <= 175+30 and 15 <= mouse[1] <= 250:
               game.placePiece(4, "R")
+              currentTurn = "Computer"
             # col 5
             if 205 <= mouse[0] <= 205+30 and 15 <= mouse[1] <= 250:
               game.placePiece(5, "R")
+              currentTurn = "Computer"
             # col 6
             if 245 <= mouse[0] <= 245+30 and 15 <= mouse[1] <= 250:
               game.placePiece(6, "R")
-            currentTurn = "Computer"
+              currentTurn = "Computer"
             delay = tick + 1000
 
-  if currentTurn == "Computer" and delay < tick:
-    game.placePiece(player.randomMove(game.board), "B")
-    currentTurn = "Player"
   ## drawing
 
   # reset
