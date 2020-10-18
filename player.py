@@ -13,9 +13,9 @@ def playGreedy(board, colour):
             break
     value = 0
     value += adjacentNearMove(board, colour, row, col)
-    # add infinie value to move that blocks opponent win
-    # add infinite value to move that makes computer win
-    
+    value += opponentWin(board, colour, row, col)
+    value += selfWin(board, colour, row, col)
+
     moves[col] = value
     print(moves[col])
 # https://stackoverflow.com/questions/35253971/how-to-check-if-all-values-of-a-dictionary-are-0
@@ -128,6 +128,13 @@ def adjacentNearMove(board, colour, row, col):
 
   return adjacentCount
 
+# return infinite value for move that blocks opponent win
+def opponentWin(board, colour, row, col):
+  return 0
+
+# return infinite value for winning move
+def selfWin(board, colour, row, col):
+  return 0
 
 
 # reads board state
