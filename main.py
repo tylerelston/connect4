@@ -88,7 +88,8 @@ while 1:
     text(win + state, screen, winX, winY)
 
   if state == 0 and currentTurn == "Computer" and delay < tick:
-    game.placePiece(player.randomMove(game.board), "B")
+    #game.placePiece(player.randomMove(game.board), "B")
+    game.placePiece(player.playGreedy(game.board, "B"), "B")
     currentTurn = "Player"
 
   for event in pygame.event.get():
