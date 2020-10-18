@@ -12,56 +12,106 @@ def randomMove(board):
   return col
 
 
-  # counts the number of adjacent same coloured pieces for a given move
-  # assumes the move given is the same as colour as the colour parameter
-  def blanksNearMove(board, colour, row, col):
-    oldCol = col
-    oldRow = row
-    adjacentCount = 0
+# counts the number of adjacent same coloured pieces for a given move
+# assumes the move given is the same as colour as the colour parameter
+def blanksNearMove(board, colour, row, col):
+  oldCol = col
+  oldRow = row
+  adjacentCount = 0
+  # count to the left
+  while col > 0:
+    print(board[row][col-1])
+    if board[row][col-1] == colour:
+      adjacentCount += 1
+      col -= 1
+    else:
+      break
 
-    # count to the left
-    while col > 0:
-      print(board[row][col-1])
-      if board[row][col-1] == colour:
-        adjacentCount += 1
-        col -= 1
-      else:
-        break
+  col = oldCol
+  row = oldRow
+  # count to the right
+  while col < 6:
+    print(board[row][col+1])
+    if board[row][col+1] == colour:
+      adjacentCount += 1
+      col += 1
+    else:
+      break
 
-    col = oldCol
-    row = oldRow
-    # count to the right
-    while col < 6:
-      print(board[row][col+1])
-      if board[row][col+1] == colour:
-        adjacentCount += 1
-        col += 1
-      else:
-        break
+  col = oldCol
+  row = oldRow
+  # count up
+  while row > 0:
+    print(board[row-1][col])
+    if board[row-1][col] == colour:
+      adjacentCount += 1
+      row -= 1
+    else:
+      break
 
-    col = oldCol
-    row = oldRow
-    # count up
-    while row < 0:
-      print(board[row-1][col])
-      if board[row-1][col] == colour:
-        adjacentCount -= 1
-        row -= 1
-      else:
-        break
+  col = oldCol
+  row = oldRow
+  # count down
+  while row < 5:
+    print(board[row+1][col])
+    if board[row+1][col] == colour:
+      adjacentCount += 1
+      row += 1
+    else:
+      break
 
-    col = oldCol
-    row = oldRow
-    # count down
-    while col < 6:
-      print(board[row+1][col])
-      if board[row+1][col] == colour:
-        adjacentCount += 1
-        row += 1
-      else:
-        break
+  col = oldCol
+  row = oldRow
+  # up and left
+  while row > 0 and col > 0:
+    print(board[row-1][col-1])
+    if board[row-1][col-1] == colour:
+      adjacentCount += 1
+      row -= 1
+      col -= 1
+    else:
+      break
 
-    return adjacentCount
+  col = oldCol
+  row = oldRow
+  # up and right
+  while row > 0 and col < 6:
+    print(board[row-1][col+1])
+    if board[row-1][col+1] == colour:
+      adjacentCount += 1
+      row -= 1
+      col += 1
+    else:
+      break
+
+  col = oldCol
+  row = oldRow
+  # down and left
+  while row < 5 and col > 0:
+    print(board[row+1][col-1])
+    if board[row+1][col-1] == colour:
+      adjacentCount += 1
+      row += 1
+      col -= 1
+    else:
+      break
+
+  col = oldCol
+  row = oldRow
+  # down and right
+  while row < 5 and col < 6:
+    print(board[row+1][col+1])
+    if board[row+1][col+1] == colour:
+      adjacentCount += 1
+      row += 1
+      col += 1
+    else:
+      break
+
+
+
+  print('adj:',adjacentCount)
+  return adjacentCount
 
 
 
