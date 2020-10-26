@@ -105,7 +105,7 @@ def adjacentNearMove(board, colour, row, col):
     else:
       break
 
-  col = oldCol
+  '''col = oldCol
   row = oldRow
   # down and left
   while row < 5 and col > 0:
@@ -125,7 +125,7 @@ def adjacentNearMove(board, colour, row, col):
       row += 1
       col += 1
     else:
-      break
+      break'''
 
   return adjacentCount
 

@@ -36,6 +36,37 @@ class Game:
               return colour
 
       # check for diagonal win
+      for row in range(len(self.board)):
+        for col in range(len(self.board[row])):
+          # up and left
+          colour = self.board[row][col]
+          consecutive = 1
+          tempRow = row
+          tempCol = col
+          while colour != 0 and tempRow > 0 and tempCol > 0:
+            if self.board[tempRow-1][tempCol-1] == colour:
+              consecutive += 1
+              tempRow -= 1
+              tempCol -= 1
+              if consecutive == 4:
+                return colour
+            else:
+              break
+
+          # up and right
+          colour = self.board[row][col]
+          consecutive = 1
+          tempRow = row
+          tempCol = col
+          while colour != 0 and tempRow > 0 and tempCol < 6:
+            if self.board[tempRow-1][tempCol+1] == colour:
+              consecutive += 1
+              tempRow -= 1
+              tempCol += 1
+              if consecutive == 4:
+                return colour
+            else:
+              break
 
 
       # check if every piece filled
