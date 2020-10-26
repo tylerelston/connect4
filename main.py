@@ -47,11 +47,33 @@ def resetGame():
   return random.choice(turns)
 
 def playRandom():
-  # player = random
+  randomWin = 0
+  computerWin = 0
+  games = 0
   def play():
     resetGame()
-    randomWin = 0
-    computerWin = 0
+    turn = random.choice(["Random", "Computer"])
+    state = game.evaluateState()
+    while state == 0:
+      #print(game.board)
+      if turn == "Random":
+        game.placePiece(player.randomMove(game.board), "R")
+        turn = "Computer"
+      if turn == "Computer":
+        game.placePiece(player.playGreedy(game.board, "B"), "B")
+        turn = "Random"
+      state = game.evaluateState()
+    return game.evaluateState()
+  for i in range(1000):
+    winner = play()
+    games += 1
+    if winner == "B":
+      computerWin += 1
+    elif winner == "R":
+      randomWin += 1
+  print("Computer wins:", computerWin)
+  print("Random wins:", randomWin)
+  print("Computer winrate:", str(100 * computerWin/games)+"%")
 
 
 
@@ -118,7 +140,7 @@ while 1:
       if event.type == pygame.MOUSEBUTTONDOWN:
         # computervsrandom button
           if randomX <= mouse[0] <= randomX+randomWidth and randomY <= mouse[1] <= randomY+randomHeight:
-            print('t')
+            playRandom()
         # reset button
           if resetX <= mouse[0] <= resetX+resetWidth and resetY <= mouse[1] <= resetY+resetHeight:
             currentTurn = resetGame()
