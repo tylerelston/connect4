@@ -46,6 +46,18 @@ def resetGame():
   displayBoard(screen, game.board)
   return random.choice(turns)
 
+def playRandom():
+  # player = random
+  def play():
+    resetGame()
+    randomWin = 0
+    computerWin = 0
+
+
+
+  #for i in range(1000):
+
+
 
 displayBoard(screen, game.board)
 
@@ -59,6 +71,12 @@ resetX = 100
 resetY = 310
 resetWidth = 100
 resetHeight = 50
+
+# random
+randomX = 300
+randomY = 15
+randomWidth = 120
+randomHeight = 50
 
 # currentTurn
 turns = ["Player", "Computer"]
@@ -84,8 +102,10 @@ while 1:
 
   # check for win
   state = game.evaluateState()
-  if (state != 0):
+  if (state == "B" or state == "R"):
     text(win + state, screen, winX, winY)
+  elif state == -1:
+    text("Draw", screen, winX, winY)
 
   if state == 0 and currentTurn == "Computer" and delay < tick:
     #game.placePiece(player.randomMove(game.board), "B")
@@ -96,6 +116,9 @@ while 1:
       if event.type == pygame.QUIT:
         pass
       if event.type == pygame.MOUSEBUTTONDOWN:
+        # computervsrandom button
+          if randomX <= mouse[0] <= randomX+randomWidth and randomY <= mouse[1] <= randomY+randomHeight:
+            print('t')
         # reset button
           if resetX <= mouse[0] <= resetX+resetWidth and resetY <= mouse[1] <= resetY+resetHeight:
             currentTurn = resetGame()
@@ -134,6 +157,11 @@ while 1:
             delay = tick + 1000
 
   ## drawing
+  # random
+  randomButton = pygame.draw.rect(screen, white, (randomX, randomY, randomWidth, randomHeight))
+  text('Random', screen, randomX+randomWidth/2, randomY+randomHeight/2)
+  text('Computer vs Random', screen, 340+randomX+randomWidth/2, randomY+randomHeight/2)
+  text('(see console output)', screen, 250+randomX+randomWidth/2, 40+randomY+randomHeight/2)
 
   # reset
   resetButton = pygame.draw.rect(screen, white, (resetX, resetY, resetWidth, resetHeight))

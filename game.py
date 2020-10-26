@@ -37,6 +37,17 @@ class Game:
 
       # check for diagonal win
 
+
+      # check if every piece filled
+      emptyExists = False
+      for row in range(len(self.board)):
+        for col in range(len(self.board[row])):
+          colour = self.board[row][col]
+          if colour == 0:
+            emptyExists = True
+
+      if not emptyExists:
+        return -1
       return 0
 
   # place piece, returns row placed at
