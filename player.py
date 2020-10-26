@@ -5,21 +5,22 @@ def playGreedy(board, colour):
   moves = {}
   for col in range(len(board[0])):
     # move down to last possible row
-    row = 0
-    while row < 5 and board[row][col] == 0:
-        if board[row][col] == 0 and board[row + 1][col] == 0:
-            row += 1
-        else:
-            break
-    value = 0
-    value += adjacentNearMove(board, colour, row, col)
-    value += opponentWin(board, colour, row, col)
-    value += selfWin(board, colour, row, col)
+    if board[0][col] == 0:
+      row = 0
+      while row < 5 and board[row][col] == 0:
+          if board[row][col] == 0 and board[row + 1][col] == 0:
+              row += 1
+          else:
+              break
+      value = 0
+      value += adjacentNearMove(board, colour, row, col)
+      value += opponentWin(board, colour, row, col)
+      value += selfWin(board, colour, row, col)
 
-    moves[col] = value
-    print(moves[col])
+      moves[col] = value
+      print(moves[col])
 # https://stackoverflow.com/questions/35253971/how-to-check-if-all-values-of-a-dictionary-are-0
-  if all(value == moves[0] for value in moves.values()):
+  if len(moves) > 0 and all(value == random.choice(list(moves.values())) for value in moves.values()):
     print('all same, choosing random')
     return random.choice(list(moves.keys()))
 
