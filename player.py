@@ -1,7 +1,6 @@
 import random
 
 def playGreedy(board, colour):
-  #print('counting value')
   moves = {}
   for col in range(len(board[0])):
     # move down to last possible row
@@ -18,7 +17,7 @@ def playGreedy(board, colour):
       value += selfWin(board, colour, row, col)
 
       moves[col] = value
-      #print(moves[col])
+
   # https://stackoverflow.com/questions/35253971/how-to-check-if-all-values-of-a-dictionary-are-0
   if len(moves) > 0 and all(value == random.choice(list(moves.values())) for value in moves.values()):
     #print('all same, choosing random')
