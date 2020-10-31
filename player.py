@@ -17,13 +17,19 @@ def playGreedy(board, colour):
       value += selfWin(board, colour, row, col)
 
       moves[col] = value
-
+  print('------------------------------------------------------------')
+  print('Moves in the form of Column:Value the player is considering:')
+  print(moves)
   # https://stackoverflow.com/questions/35253971/how-to-check-if-all-values-of-a-dictionary-are-0
   if len(moves) > 0 and all(value == random.choice(list(moves.values())) for value in moves.values()):
-    #print('all same, choosing random')
+    print('All moves are equal value')
+    move = random.choice(list(moves.keys()))
+    print('Choosing randomly:', move)
     return random.choice(list(moves.keys()))
 
-  return max(moves, key=moves.get)
+  move = max(moves, key=moves.get)
+  print('Choosing:', move)
+  return move
 
 # calculates the value of a move
 def value(board, colour, row, col):
