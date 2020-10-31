@@ -96,7 +96,7 @@ resetHeight = 50
 
 # random
 randomX = 300
-randomY = 15
+randomY = 65
 randomWidth = 120
 randomHeight = 50
 
@@ -180,12 +180,13 @@ while 1:
 
   ### drawing
   ## data
-    text('Data:', screen, 215+randomX+randomWidth/2, randomY+randomHeight/2 - 50)
+  text('Data:', screen, randomX+randomWidth/2, randomY+randomHeight/2 - 60)
+  text('(see console output)', screen, 215 + randomX+randomWidth/2, randomY+randomHeight/2 - 60)
   # random
-  randomButton = pygame.draw.rect(screen, white, (randomX, 50 + randomY, randomWidth, randomHeight))
+  randomButton = pygame.draw.rect(screen, white, (randomX, randomY, randomWidth, randomHeight))
   text('Random', screen, randomX+randomWidth/2, randomY+randomHeight/2)
-  text('Computer vs Random', screen, 215+randomX+randomWidth/2, 50 + randomY+randomHeight/2)
-  text('(see console output)', screen, 215+randomX+randomWidth/2, 40+randomY+randomHeight/2)
+  text('Computer vs Random', screen, 215+randomX+randomWidth/2, randomY+randomHeight/2)
+  #text('(see console output)', screen, 215+randomX+randomWidth/2, 90+randomY+randomHeight/2)
 
   # reset
   resetButton = pygame.draw.rect(screen, white, (resetX, resetY, resetWidth, resetHeight))
