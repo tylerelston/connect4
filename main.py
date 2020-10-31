@@ -178,11 +178,13 @@ while 1:
                 currentTurn = "Computer"
             delay = tick + 1000
 
-  ## drawing
+  ### drawing
+  ## data
+    text('Data:', screen, 215+randomX+randomWidth/2, randomY+randomHeight/2 - 50)
   # random
-  randomButton = pygame.draw.rect(screen, white, (randomX, randomY, randomWidth, randomHeight))
+  randomButton = pygame.draw.rect(screen, white, (randomX, 50 + randomY, randomWidth, randomHeight))
   text('Random', screen, randomX+randomWidth/2, randomY+randomHeight/2)
-  text('Computer vs Random', screen, 215+randomX+randomWidth/2, randomY+randomHeight/2)
+  text('Computer vs Random', screen, 215+randomX+randomWidth/2, 50 + randomY+randomHeight/2)
   text('(see console output)', screen, 215+randomX+randomWidth/2, 40+randomY+randomHeight/2)
 
   # reset
