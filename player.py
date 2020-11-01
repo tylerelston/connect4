@@ -3,6 +3,10 @@ import random
 def playGreedy(board, colour):
   #print('counting value')
   moves = {}
+  if colour == "B":
+    oppColour = "R"
+  else:
+    oppColour = "B"
   for col in range(len(board[0])):
     # move down to last possible row
     if board[0][col] == 0:
@@ -16,6 +20,7 @@ def playGreedy(board, colour):
       value += adjacentNearMove(board, colour, row, col)
       value += opponentWin(board, colour, row, col)
       value += selfWin(board, colour, row, col)
+      value += blockOpp(board, oppColour, row, col)
 
       moves[col] = value
       #print(moves[col])
@@ -136,6 +141,77 @@ def opponentWin(board, colour, row, col):
 # return infinite value for winning move
 def selfWin(board, colour, row, col):
   return 0
+
+# counts the amount of consecutive tiles the opponent has (up to 3)
+# and chooses to block the most threatening move
+# assumes colour is of the opponent, not self.
+def blockOpp(board, colour, row, col):
+  oldCol = col
+  oldRow = row
+
+  oppCount = 0
+
+  #count to the left
+  while col > 0:
+    if board[row][col-1] == colour:
+      oppCount += 1
+      col -= 1
+    else:
+      break
+    
+  col = oldCol
+  row = oldRow
+  # count to the right
+  while col < 6:
+    if board[row][col+1] == colour:
+      oppCount +=1
+      col += 1
+    else:
+      break
+    
+  col = oldCol
+  row = oldRow
+  # count up 
+  while row > 0:
+    if board[row-1][col] == colour:
+      oppCount += 1
+      row -= 1
+    else:
+      break
+
+  col = oldCol
+  row = oldRow
+  # count down
+  while row < 5:
+    if board[row+1][col] == colour:
+      oppCount += 1
+      row += 1
+    else:
+      break
+
+  col = oldCol
+  row = oldRow
+  # up and left
+  while row > 0 and col > 0:
+    if board[row-1][col-1] == colour:
+      oppCount += 1
+      row -= 1
+      col -= 1
+    else:
+      break
+
+  col = oldCol
+  row = oldRow
+  # up and right
+  while row > 0 and col < 6:
+    if board[row-1][col+1] == colour:
+      oppCount += 1
+      row -= 1
+      col += 1
+    else:
+      break
+
+  return oppCount
 
 
 # reads board state
