@@ -50,6 +50,9 @@ def playRandom():
   randomWin = 0
   computerWin = 0
   games = 0
+  print('------------------------------------------------------------')
+  print("Playing 1000 games of greedy vs random player")
+
   def play():
     resetGame()
     turn = random.choice(["Random", "Computer"])
@@ -60,7 +63,7 @@ def playRandom():
         game.placePiece(player.randomMove(game.board), "R")
         turn = "Computer"
       if turn == "Computer":
-        game.placePiece(player.playGreedy(game.board, "B"), "B")
+        game.placePiece(player.playGreedy(game.board, "B", False), "B")
         turn = "Random"
       state = game.evaluateState()
     return game.evaluateState()
@@ -131,7 +134,7 @@ while 1:
 
   if state == 0 and currentTurn == "Computer" and delay < tick:
     #game.placePiece(player.randomMove(game.board), "B")
-    game.placePiece(player.playGreedy(game.board, "B"), "B")
+    game.placePiece(player.playGreedy(game.board, "B", True), "B")
     currentTurn = "Player"
 
   for event in pygame.event.get():

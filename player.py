@@ -1,7 +1,8 @@
 import random
 
-def playGreedy(board, colour):
+def playGreedy(board, colour, display):
   moves = {}
+  moveDisplay = ""
   for col in range(len(board[0])):
     # move down to last possible row
     if board[0][col] == 0:
@@ -17,18 +18,22 @@ def playGreedy(board, colour):
       value += selfWin(board, colour, row, col)
 
       moves[col] = value
-  print('------------------------------------------------------------')
-  print('Moves in the form of Column:Value the player is considering:')
-  print(moves)
+  moveDisplay += '------------------------------------------------------------\n'
+  moveDisplay += 'Moves in the form of Column:Value the player is considering:\n'
+  moveDisplay += str(moves) + '\n'
   # https://stackoverflow.com/questions/35253971/how-to-check-if-all-values-of-a-dictionary-are-0
   if len(moves) > 0 and all(value == random.choice(list(moves.values())) for value in moves.values()):
-    print('All moves are equal value')
+    moveDisplay += 'All moves are equal value\n'
     move = random.choice(list(moves.keys()))
-    print('Choosing randomly:', move)
+    moveDisplay += 'Choosing randomly: ' + str(move) + '\n'
     return random.choice(list(moves.keys()))
 
   move = max(moves, key=moves.get)
-  print('Choosing:', move)
+  moveDisplay += 'Choosing: ' + str(move) + '\n'
+
+  if display:
+    print(moveDisplay)
+
   return move
 
 # calculates the value of a move
