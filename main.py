@@ -50,6 +50,9 @@ def playRandom():
   randomWin = 0
   computerWin = 0
   games = 0
+  print('------------------------------------------------------------')
+  print("Playing 1000 games of greedy vs random player")
+
   def play():
     resetGame()
     turn = random.choice(["Random", "Computer"])
@@ -60,7 +63,7 @@ def playRandom():
         game.placePiece(player.randomMove(game.board), "R")
         turn = "Computer"
       if turn == "Computer":
-        game.placePiece(player.playGreedy(game.board, "B"), "B")
+        game.placePiece(player.playGreedy(game.board, "B", False), "B")
         turn = "Random"
       state = game.evaluateState()
     return game.evaluateState()
@@ -96,7 +99,7 @@ resetHeight = 50
 
 # random
 randomX = 300
-randomY = 15
+randomY = 65
 randomWidth = 120
 randomHeight = 50
 
@@ -131,7 +134,7 @@ while 1:
 
   if state == 0 and currentTurn == "Computer" and delay < tick:
     #game.placePiece(player.randomMove(game.board), "B")
-    game.placePiece(player.playGreedy(game.board, "B"), "B")
+    game.placePiece(player.playGreedy(game.board, "B", True), "B")
     currentTurn = "Player"
 
   for event in pygame.event.get():
@@ -178,12 +181,15 @@ while 1:
                 currentTurn = "Computer"
             delay = tick + 1000
 
-  ## drawing
+  ### drawing
+  ## data
+  text('Data:', screen, randomX+randomWidth/2, randomY+randomHeight/2 - 60)
+  text('(see console output)', screen, 215 + randomX+randomWidth/2, randomY+randomHeight/2 - 60)
   # random
   randomButton = pygame.draw.rect(screen, white, (randomX, randomY, randomWidth, randomHeight))
   text('Random', screen, randomX+randomWidth/2, randomY+randomHeight/2)
   text('Computer vs Random', screen, 215+randomX+randomWidth/2, randomY+randomHeight/2)
-  text('(see console output)', screen, 215+randomX+randomWidth/2, 40+randomY+randomHeight/2)
+  #text('(see console output)', screen, 215+randomX+randomWidth/2, 90+randomY+randomHeight/2)
 
   # reset
   resetButton = pygame.draw.rect(screen, white, (resetX, resetY, resetWidth, resetHeight))
