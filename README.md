@@ -1,6 +1,6 @@
 # connect4
 
-### Prerequisites
+## Prerequisites
 
 [pyGame](https://www.pygame.org/download.shtml)
 
