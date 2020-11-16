@@ -158,17 +158,25 @@ def blockOpp(board, colour, row, col):
       col -= 1
     else:
       break
-    
+
+  if oppCount == 3:
+    return 9999999999
+  else:
+    oppCount = 0  
   col = oldCol
   row = oldRow
   # count to the right
   while col < 6:
     if board[row][col+1] == colour:
-      oppCount +=1
+      oppCount += 1
       col += 1
     else:
       break
     
+  if oppCount == 3:
+    return 9999999999
+  else:
+    oppCount = 0    
   col = oldCol
   row = oldRow
   # count up 
@@ -179,6 +187,10 @@ def blockOpp(board, colour, row, col):
     else:
       break
 
+  if oppCount == 3:
+    return 9999999999
+  else:
+    oppCount = 0  
   col = oldCol
   row = oldRow
   # count down
@@ -189,6 +201,10 @@ def blockOpp(board, colour, row, col):
     else:
       break
 
+  if oppCount == 3:
+    return 9999999999
+  else:
+    oppCount = 0  
   col = oldCol
   row = oldRow
   # up and left
@@ -200,6 +216,10 @@ def blockOpp(board, colour, row, col):
     else:
       break
 
+  if oppCount == 3:
+    return 9999999999
+  else:
+    oppCount = 0  
   col = oldCol
   row = oldRow
   # up and right
