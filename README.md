@@ -3,6 +3,10 @@
 ## Video Demo
 https://drive.google.com/file/d/1jchR_Onrky7WgVb2dlwLG-_wAqXqpg3E
 
+or
+
+https://github.com/tylerelston/connect4/blob/master/Connect4%20Demo.flv
+
 
 ## Prerequisites
 
