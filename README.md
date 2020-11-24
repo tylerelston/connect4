@@ -6,7 +6,7 @@
 
 ## Usage
 
-Play the game online on (Repl)
+Play the game online on [Repl](https://repl.it/@tylerelston/Connect4)
 
 or
 
