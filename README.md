@@ -1,7 +1,7 @@
 # connect4
 
 ## Video Demo
-https://drive.google.com/file/d/1jchR_Onrky7WgVb2dlwLG-_wAqXqpg3E/view?usp=sharing
+https://drive.google.com/file/d/1jchR_Onrky7WgVb2dlwLG-_wAqXqpg3E
 
 
 ## Prerequisites
