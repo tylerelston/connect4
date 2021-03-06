@@ -1,7 +1,7 @@
 # connect4
-Connect4 implemented in Python with heuristic-based AI.
+Connect4 implemented in Python with greedy AI.
 
-Heuristic algorithm beats a random player with a 96% winrate
+Greedy algorithm beats a random player with a 96% winrate
 
 ## Video Demo
 https://drive.google.com/file/d/1jchR_Onrky7WgVb2dlwLG-_wAqXqpg3E
