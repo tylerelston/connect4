@@ -1,5 +1,6 @@
 # connect4
 Connect4 implemented in Python with heuristic-based AI.
+
 Heuristic algorithm beats a random player with a 96% winrate
 
 ## Video Demo
