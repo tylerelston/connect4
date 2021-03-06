@@ -1,4 +1,5 @@
 # connect4
+Connect4 implemented in Python with heuristic-based AI.
 
 ## Video Demo
 https://drive.google.com/file/d/1jchR_Onrky7WgVb2dlwLG-_wAqXqpg3E
